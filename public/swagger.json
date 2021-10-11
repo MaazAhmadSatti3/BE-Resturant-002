@@ -49,9 +49,232 @@
 				],
 				"type": "object",
 				"additionalProperties": false
+			},
+			"ILocation": {
+				"properties": {
+					"latitude": {
+						"type": "number",
+						"format": "double"
+					},
+					"longitude": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"latitude",
+					"longitude"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"IRegisterResturantRes": {
+				"properties": {
+					"_id": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					},
+					"location": {
+						"$ref": "#/components/schemas/ILocation"
+					},
+					"createdAt": {
+						"type": "string"
+					},
+					"updatedAt": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"_id",
+					"name",
+					"location"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"IRegisterResturantReq": {
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"location": {
+						"$ref": "#/components/schemas/ILocation"
+					}
+				},
+				"required": [
+					"name",
+					"location"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"_LeanDocument__LeanDocument_T__": {
+				"properties": {},
+				"type": "object"
+			},
+			"Pick__LeanDocument_T_.Exclude_keyof_LeanDocument_T_.Exclude_keyofDocument._id-or-id-or-__v_-or-%24isSingleNested__": {
+				"properties": {
+					"_id": {
+						"$ref": "#/components/schemas/_LeanDocument__LeanDocument_T__",
+						"description": "This documents _id."
+					},
+					"__v": {
+						"description": "This documents __v."
+					},
+					"id": {
+						"description": "The string version of this documents _id."
+					}
+				},
+				"type": "object",
+				"description": "From T, pick a set of properties whose keys are in the union K"
+			},
+			"Omit__LeanDocument_this_.Exclude_keyofDocument._id-or-id-or-__v_-or-%24isSingleNested_": {
+				"$ref": "#/components/schemas/Pick__LeanDocument_T_.Exclude_keyof_LeanDocument_T_.Exclude_keyofDocument._id-or-id-or-__v_-or-%24isSingleNested__",
+				"description": "Construct a type with the properties of T except for those in type K."
+			},
+			"LeanDocument_this_": {
+				"$ref": "#/components/schemas/Omit__LeanDocument_this_.Exclude_keyofDocument._id-or-id-or-__v_-or-%24isSingleNested_"
+			},
+			"IResturant": {
+				"$ref": "#/components/schemas/LeanDocument_this_"
+			},
+			"IDeleteResturantReq": {
+				"properties": {
+					"_id": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"_id"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"IGetResturantReq": {
+				"properties": {
+					"_id": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"_id"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"ICheckNearbyResturantRes": {
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"distance": {
+						"type": "number",
+						"format": "double"
+					},
+					"location": {
+						"$ref": "#/components/schemas/ILocation"
+					}
+				},
+				"required": [
+					"name",
+					"distance",
+					"location"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"ICheckNearbyResturantReq": {
+				"properties": {
+					"location": {
+						"$ref": "#/components/schemas/ILocation"
+					},
+					"radius": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"location",
+					"radius"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"IRegisterUserRes": {
+				"properties": {
+					"_id": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					},
+					"email": {
+						"type": "string"
+					},
+					"password": {
+						"type": "string"
+					},
+					"createdAt": {
+						"type": "string"
+					},
+					"updatedAt": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"_id",
+					"name",
+					"email",
+					"password"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"IRegisterUserReq": {
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"email": {
+						"type": "string"
+					},
+					"password": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"name",
+					"email",
+					"password"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"IUser": {
+				"$ref": "#/components/schemas/LeanDocument_this_"
+			},
+			"IDeleteUserReq": {
+				"properties": {
+					"_id": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"_id"
+				],
+				"type": "object",
+				"additionalProperties": false
 			}
 		},
-		"securitySchemes": {}
+		"securitySchemes": {
+			"api_key": {
+				"type": "apiKey",
+				"name": "token",
+				"in": "header"
+			}
+		}
 	},
 	"info": {
 		"title": "resturantapi",
@@ -93,6 +316,272 @@
 						}
 					}
 				}
+			}
+		},
+		"/resturant/registerResturant": {
+			"post": {
+				"operationId": "RegisterResturant",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IRegisterResturantRes"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"resturant"
+				],
+				"security": [
+					{
+						"api_key": []
+					}
+				],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/IRegisterResturantReq"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/resturant/deleteResturant": {
+			"delete": {
+				"operationId": "DeleteResturant",
+				"responses": {
+					"200": {
+						"description": "Resturant Deleted",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/IResturant"
+										},
+										{
+											"properties": {
+												"_id": {
+													"type": "string"
+												}
+											},
+											"required": [
+												"_id"
+											],
+											"type": "object"
+										}
+									]
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"resturant"
+				],
+				"security": [
+					{
+						"api_key": []
+					}
+				],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/IDeleteResturantReq"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/resturant/getResturant": {
+			"post": {
+				"operationId": "GetResturant",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IRegisterResturantRes"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"resturant"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/IGetResturantReq"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/resturant/checkNearByResturants": {
+			"post": {
+				"operationId": "CheckNearByResturants",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/ICheckNearbyResturantRes"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"resturant"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/ICheckNearbyResturantReq"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/user/registerUser": {
+			"post": {
+				"operationId": "RegisterUser",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IRegisterUserRes"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"user"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/IRegisterUserReq"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/user/deleteUser": {
+			"delete": {
+				"operationId": "DeleteUser",
+				"responses": {
+					"200": {
+						"description": "User Deleted",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/IUser"
+										},
+										{
+											"properties": {
+												"_id": {
+													"type": "string"
+												}
+											},
+											"required": [
+												"_id"
+											],
+											"type": "object"
+										}
+									]
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"user"
+				],
+				"security": [
+					{
+						"api_key": []
+					}
+				],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/IDeleteUserReq"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/user/checkUsers": {
+			"post": {
+				"operationId": "CheckUsers",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/IRegisterUserRes"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"user"
+				],
+				"security": [
+					{
+						"api_key": []
+					}
+				],
+				"parameters": []
 			}
 		}
 	},

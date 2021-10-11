@@ -13,7 +13,7 @@ export const tokenVerify = async function (req: Request, res: Response, next: Ne
         next(err);
     } else {
         try {
-            const decoded = jwt.verify(token, <jwt.Secret>conf.TOKEN_KEY);
+            const decoded = jwt.verify(token, <jwt.Secret>conf.SECRET);
             res.locals.body = <AdminLoginReq> decoded;
             next();
         } catch (error) {
