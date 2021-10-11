@@ -1,0 +1,104 @@
+{
+	"components": {
+		"examples": {},
+		"headers": {},
+		"parameters": {},
+		"requestBodies": {},
+		"responses": {},
+		"schemas": {
+			"AdminLoginRes": {
+				"properties": {
+					"TOKEN_KEY": {
+						"type": "string"
+					},
+					"message": {
+						"type": "string"
+					}
+				},
+				"type": "object",
+				"additionalProperties": false
+			},
+			"AdminLoginReq": {
+				"properties": {
+					"name": {
+						"type": "string",
+						"enum": [
+							"admin"
+						],
+						"nullable": false
+					},
+					"email": {
+						"type": "string",
+						"enum": [
+							"admin@test.com"
+						],
+						"nullable": false
+					},
+					"password": {
+						"type": "string",
+						"enum": [
+							"admin@123"
+						],
+						"nullable": false
+					}
+				},
+				"required": [
+					"name",
+					"email",
+					"password"
+				],
+				"type": "object",
+				"additionalProperties": false
+			}
+		},
+		"securitySchemes": {}
+	},
+	"info": {
+		"title": "resturantapi",
+		"version": "1.0.0",
+		"license": {
+			"name": "ISC"
+		},
+		"contact": {}
+	},
+	"openapi": "3.0.0",
+	"paths": {
+		"/admin/authAdmin": {
+			"post": {
+				"operationId": "AuthAdmin",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/AdminLoginRes"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"admin"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/AdminLoginReq"
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"servers": [
+		{
+			"url": "/"
+		}
+	]
+}
