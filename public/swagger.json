@@ -110,36 +110,6 @@
 				"type": "object",
 				"additionalProperties": false
 			},
-			"_LeanDocument__LeanDocument_T__": {
-				"properties": {},
-				"type": "object"
-			},
-			"Pick__LeanDocument_T_.Exclude_keyof_LeanDocument_T_.Exclude_keyofDocument._id-or-id-or-__v_-or-%24isSingleNested__": {
-				"properties": {
-					"_id": {
-						"$ref": "#/components/schemas/_LeanDocument__LeanDocument_T__",
-						"description": "This documents _id."
-					},
-					"__v": {
-						"description": "This documents __v."
-					},
-					"id": {
-						"description": "The string version of this documents _id."
-					}
-				},
-				"type": "object",
-				"description": "From T, pick a set of properties whose keys are in the union K"
-			},
-			"Omit__LeanDocument_this_.Exclude_keyofDocument._id-or-id-or-__v_-or-%24isSingleNested_": {
-				"$ref": "#/components/schemas/Pick__LeanDocument_T_.Exclude_keyof_LeanDocument_T_.Exclude_keyofDocument._id-or-id-or-__v_-or-%24isSingleNested__",
-				"description": "Construct a type with the properties of T except for those in type K."
-			},
-			"LeanDocument_this_": {
-				"$ref": "#/components/schemas/Omit__LeanDocument_this_.Exclude_keyofDocument._id-or-id-or-__v_-or-%24isSingleNested_"
-			},
-			"IResturant": {
-				"$ref": "#/components/schemas/LeanDocument_this_"
-			},
 			"IDeleteResturantReq": {
 				"properties": {
 					"_id": {
@@ -252,9 +222,6 @@
 				"type": "object",
 				"additionalProperties": false
 			},
-			"IUser": {
-				"$ref": "#/components/schemas/LeanDocument_this_"
-			},
 			"IDeleteUserReq": {
 				"properties": {
 					"_id": {
@@ -359,29 +326,7 @@
 				"operationId": "DeleteResturant",
 				"responses": {
 					"200": {
-						"description": "Resturant Deleted",
-						"content": {
-							"application/json": {
-								"schema": {
-									"allOf": [
-										{
-											"$ref": "#/components/schemas/IResturant"
-										},
-										{
-											"properties": {
-												"_id": {
-													"type": "string"
-												}
-											},
-											"required": [
-												"_id"
-											],
-											"type": "object"
-										}
-									]
-								}
-							}
-						}
+						"description": "Resturant Deleted"
 					}
 				},
 				"tags": [
@@ -455,6 +400,7 @@
 						}
 					}
 				},
+				"description": "\r\nI have register 10 resturants in rawalipindi and tested this with 10,000 meter radius it returns all but if you let say\r\ninput lat and long of anywhere outside rawalpindi i.e radius > 10,000 it will return empty array",
 				"tags": [
 					"resturant"
 				],
@@ -509,29 +455,7 @@
 				"operationId": "DeleteUser",
 				"responses": {
 					"200": {
-						"description": "User Deleted",
-						"content": {
-							"application/json": {
-								"schema": {
-									"allOf": [
-										{
-											"$ref": "#/components/schemas/IUser"
-										},
-										{
-											"properties": {
-												"_id": {
-													"type": "string"
-												}
-											},
-											"required": [
-												"_id"
-											],
-											"type": "object"
-										}
-									]
-								}
-							}
-						}
+						"description": "User Deleted"
 					}
 				},
 				"tags": [

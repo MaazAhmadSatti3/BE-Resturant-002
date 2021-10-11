@@ -20,7 +20,7 @@ export class UserController {
     @Delete('deleteUser')
     @SuccessResponse('200', 'User Deleted')
     async deleteUser(@Body() delReq: IDeleteUserReq) {
-        return await new UserRepo().deleteUser(delReq._id)
+         await new UserRepo().deleteUser(delReq._id)
     }
 
     @Security('api_key')
