@@ -1,6 +1,6 @@
 import { Get, Route, Tags, Post, Body, Path, Put, Delete, SuccessResponse } from "tsoa";
-import { AdminLoginReq } from "../types/request/admin.request";
-import { AdminLoginRes } from "../types/response/admin.response";
+import { AdminLoginReq } from "../types/requests/admin.request";
+import { AdminLoginRes } from "../types/responses/admin.response";
 import jwt, { Secret } from "jsonwebtoken";
 require('dotenv').config();
 

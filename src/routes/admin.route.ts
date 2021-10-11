@@ -1,7 +1,7 @@
 import express from 'express';
 import { AdminController } from '../controllers/admin.controller';
-import { AdminLoginReq } from '../types/request/admin.request';
-import { AdminLoginRes } from '../types/response/admin.response';
+import { AdminLoginReq } from '../types/requests/admin.request';
+import { AdminLoginRes } from '../types/responses/admin.response';
 
 export class AdminRoutes {
     router: express.Router;

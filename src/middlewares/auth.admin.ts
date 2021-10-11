@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from 'jsonwebtoken';
 import CustomError from '../utils/error';
-import { AdminLoginReq } from "../types/request/admin.request";
+import { AdminLoginReq } from "../types/requests/admin.request";
 
 const conf = process.env
 
